@@ -3,6 +3,12 @@
     <output-path>$PROJECT_DIR$/target</output-path>
     <root id="archive" name="SpringTest.war">
       <element id="artifact" artifact-name="SpringTest:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="rt-twu-biblioteca" />
+          <element id="library" level="project" name="org.springframework:org.springframework.test:3.2.2.RELEASE" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="rt-twu-biblioteca">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/rt-twu-biblioteca.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
