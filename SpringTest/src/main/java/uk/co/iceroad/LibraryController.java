@@ -186,12 +186,99 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "checkoutBook",method = RequestMethod.POST)
-    public String postLogin(@ModelAttribute BookBuilder bookBuilder, HttpServletRequest request) {
+    public String postCheckoutBook(@ModelAttribute BookBuilder bookBuilder, HttpServletRequest request) {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
         Command.CHECKOUT_BOOK.getAction().performAction(menu,
                 new String[]{bookBuilder.getTitle(),bookBuilder.getAuthor(), bookBuilder.getYear()});
         return "redirect:index";
     }
 
+    /**
+     * RETURN BOOK
+     */
 
+    @RequestMapping(value = "returnBook", method = RequestMethod.GET)
+    public String initReturnBook(ModelMap model) {
+        model.addAttribute("bookBuilder", new BookBuilder());
+        return "returnBook";
+    }
+
+    @RequestMapping(value = "returnBook",method = RequestMethod.POST)
+    public String postReturnBook(@ModelAttribute BookBuilder bookBuilder, HttpServletRequest request) {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        Command.RETURN_BOOK.getAction().performAction(menu,
+                new String[]{bookBuilder.getTitle(),bookBuilder.getAuthor(), bookBuilder.getYear()});
+        return "redirect:index";
+    }
+
+    /**
+     * CHECKOUT MOVIE
+     */
+
+    @RequestMapping(value = "checkoutMovie", method = RequestMethod.GET)
+    public String initCheckoutMovie(ModelMap model) {
+        model.addAttribute("movieBuilder", new MovieBuilder());
+        return "checkoutMovie";
+    }
+
+    @RequestMapping(value = "checkoutMovie",method = RequestMethod.POST)
+    public String postCheckoutMovie(@ModelAttribute MovieBuilder movieBuilder, HttpServletRequest request) {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        Command.CHECKOUT_MOVIE.getAction().performAction(menu,
+                new String[]{movieBuilder.getTitle(),movieBuilder.getDirector(), movieBuilder.getYear()});
+        return "redirect:index";
+    }
+
+    /**
+     * RETURN MOVIE
+     */
+
+    @RequestMapping(value = "returnMovie", method = RequestMethod.GET)
+    public String initReturnMovie(ModelMap model) {
+        model.addAttribute("movieBuilder", new MovieBuilder());
+        return "returnMovie";
+    }
+
+    @RequestMapping(value = "returnMovie",method = RequestMethod.POST)
+    public String postReturnBook(@ModelAttribute MovieBuilder movieBuilder, HttpServletRequest request) {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        Command.RETURN_MOVIE.getAction().performAction(menu,
+                new String[]{movieBuilder.getTitle(),movieBuilder.getDirector(), movieBuilder.getYear()});
+        return "redirect:index";
+    }
+
+
+    /**
+     *VIEW DETAILS
+     */
+
+    @RequestMapping(value = "viewDetails", method = RequestMethod.GET)
+    public String initViewDetails(ModelMap model,HttpServletRequest request) {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        model.addAttribute("customer", menu.getLoggedInCustomer());
+        return "viewDetails";
+    }
+
+    @RequestMapping(value = "viewDetails",method = RequestMethod.POST)
+    public String postViewDetails() {
+        return "redirect:index";
+    }
+
+
+    /**
+     *Quit
+     */
+
+    @RequestMapping(value = "quit", method = RequestMethod.GET)
+    public String initQuit(ModelMap model, HttpServletRequest request) {
+        model.addAttribute("quitMessage", "You Are Logged Out");
+        Menu oldMenu = (Menu) request.getSession().getAttribute("menu");
+        request.getSession().setAttribute("menu", new Menu(oldMenu.getLibrary()));
+        return "quit";
+    }
+
+    @RequestMapping(value = "quit",method = RequestMethod.POST)
+    public String postQuit() {
+        return "redirect:index";
+    }
 }
