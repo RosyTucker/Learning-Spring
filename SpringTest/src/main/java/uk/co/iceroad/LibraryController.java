@@ -3,6 +3,8 @@ package uk.co.iceroad;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.LibraryItem;
+import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.menu.Command;
 import com.twu.biblioteca.model.menu.Menu;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -42,6 +44,7 @@ public class LibraryController {
         model.addAttribute("commandList", menu.getValidCommands());
         model.addAttribute("customerMessage", "We have " + menu.getLibrary().getCustomers().size() + " Users");
         model.addAttribute("bookMessage", "We have " + menu.getLibrary().getInventory().size() + " Items");
+        model.addAttribute("loginMessage", "You are " + (menu.isUserLoggedIn() ? menu.getLoggedInCustomer().getName() : "not logged in."));
         return "index";
     }
 
@@ -54,7 +57,7 @@ public class LibraryController {
                 return "redirect:" + command.getPage();
             }
         }
-        return "index";
+        return "redirect:index";
     }
 
     /**
@@ -85,9 +88,27 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "addBook",method = RequestMethod.POST)
-    public String postBook(@ModelAttribute BookBuilder builder, ModelMap model, HttpServletRequest request) {
+    public String postBook(@ModelAttribute BookBuilder builder,HttpServletRequest request) {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
         menu.getLibrary().getInventory().add(builder.createBook());
+        return "redirect:index";
+    }
+
+
+    /**
+     * MOVIE
+     */
+
+    @RequestMapping(value = "addMovie", method = RequestMethod.GET)
+    public String initMovie(ModelMap model) {
+        model.addAttribute("movieBuilder", new MovieBuilder());
+        return "addMovie";
+    }
+
+    @RequestMapping(value = "addMovie",method = RequestMethod.POST)
+    public String postMovie(@ModelAttribute MovieBuilder builder,HttpServletRequest request) {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        menu.getLibrary().getInventory().add(builder.createMovie());
         return "redirect:index";
     }
 
@@ -112,4 +133,65 @@ public class LibraryController {
     public String postListBook() {
         return "redirect:index";
     }
+
+
+    /**
+     * LIST MOVIES
+     */
+
+    @RequestMapping(value = "listMovie", method = RequestMethod.GET)
+    public String initListMovie(ModelMap model, HttpServletRequest request) {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        List<Movie> movieList = new ArrayList<Movie>();
+        for(LibraryItem item :  menu.getLibrary().getInventory()){
+            if(item instanceof Movie){
+                movieList.add((Movie) item);
+            }
+        }
+        model.addAttribute("movieList", movieList);
+        return "listMovie";
+    }
+
+    @RequestMapping(value = "listMovie",method = RequestMethod.POST)
+    public String postListMovie() {
+        return "redirect:index";
+    }
+
+
+    /**
+     * LOGIN
+     */
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String initLogin(ModelMap model) {
+        model.addAttribute("loginBuilder", new LoginBuilder());
+        return "login";
+    }
+
+    @RequestMapping(value = "login",method = RequestMethod.POST)
+    public String postLogin(@ModelAttribute LoginBuilder loginBuilder, HttpServletRequest request) {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        Command.LOGIN.getAction().performAction(menu,new String[]{loginBuilder.getLibraryNumber(),loginBuilder.getPassword()});
+        return "redirect:index";
+    }
+
+    /**
+     * CHECKOUT BOOK
+     */
+
+    @RequestMapping(value = "checkoutBook", method = RequestMethod.GET)
+    public String initCheckoutBook(ModelMap model) {
+        model.addAttribute("bookBuilder", new BookBuilder());
+        return "checkoutBook";
+    }
+
+    @RequestMapping(value = "checkoutBook",method = RequestMethod.POST)
+    public String postLogin(@ModelAttribute BookBuilder bookBuilder, HttpServletRequest request) {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        Command.CHECKOUT_BOOK.getAction().performAction(menu,
+                new String[]{bookBuilder.getTitle(),bookBuilder.getAuthor(), bookBuilder.getYear()});
+        return "redirect:index";
+    }
+
+
 }

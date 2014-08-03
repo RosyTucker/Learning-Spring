@@ -16,6 +16,8 @@
             <td>Title</td>
             <td>Author</td>
             <td>Year Published</td>
+            <td>Checked Out?</td>
+
         </tr>
 
         <c:forEach items="${bookList}" var="book">
@@ -23,6 +25,7 @@
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>${book.yearPublished}</td>
+                <td>${book.checkedOut}</td>
             </tr>
         </c:forEach>
     </table>

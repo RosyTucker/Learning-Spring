@@ -24,6 +24,7 @@
 </div>
 <h1 style="color:#7323d3">${customerMessage}</h1>
 <h1 style="color:#7323d3">${bookMessage}</h1>
+<h1 style="color:#7323d3">${loginMessage}</h1>
 
 </body>
 </html>
