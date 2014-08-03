@@ -1,0 +1,101 @@
+body{
+    background-image:url('../images/congruent_pentagon.png');
+    background-repeat: repeat;
+}
+
+.content{
+    margin-top: 120px;
+    padding:30px;
+}
+
+.content{
+    background-color: #ffffff;
+    border: solid medium #256f5b;
+    border-radius: 10px;
+}
+
+.menu-button{
+    margin: 0.8em;
+    background-color: #256f5b;
+    border:none;
+    color:#FFFFFF;
+    width: 200px;
+    height: 80px;
+    font-weight: 100;
+    font-size: 1.5em;
+}
+
+.navbar-default{
+    height: 3.5em;
+    background-color: #256f5b;
+    border-color: #256f5b;
+}
+
+h1{
+    margin: 0.2em;
+    color:#FFFFFF;
+    font-size: 2.3em;
+    font-weight: 200;
+}
+
+h2{
+    margin: 0.4em;
+    color:#FFFFFF;
+    font-size: 1.8em;
+    font-weight: 100;
+}
+
+.message{
+    color:#d31c6b;
+    font-weight: 100;
+}
+
+label{
+    margin-left: -50px;
+    margin-right: 10px;
+    width:150px;
+    text-align: right;
+    color: #256f5b;
+}
+
+input{
+    margin:4px;
+}
+
+.submit-button{
+    margin-top: 30px;
+    background-color: #256f5b;
+    color: #ffffff;
+    font-weight: 100;
+}
+
+.content h1{
+    color: #d31c6b;
+    font-size: 2.3em;
+    font-weight: 200;
+    margin-bottom: 30px;
+}
+
+.table-header{
+    background-color: #256f5b;
+    color: #ffffff;
+    font-weight: 200;
+}
+
+.table-striped tr td{
+    font-weight: 100;
+}
+
+.table-label{
+    margin-left: -50px;
+    padding-right: 10px;
+    padding-top: 4px;
+    color: #256f5b;
+    font-weight: bold;
+}
+
+.table-value{
+    padding-left: 5px;
+    padding-top: 4px;
+    font-weight: 100;
+}

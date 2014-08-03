@@ -6,29 +6,38 @@
 <body>
 <head>
     <title>Home</title>
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet"  type="text/css" />
+    <link href="<c:url value="/resources/css/biblioteca.css" />" rel="stylesheet"  type="text/css" />
 </head>
-<h1 style="color:#7323d3">${welcome}</h1>
 
+<header>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <h1>Biblioteca</h1>
+            </div>
+            <div class="navbar-right">
+            <h2>${loginMessage}</h2>
+            </div>
+        </div>
+    </div>
+</header>
 
-
-<div class="option">
-
+<div class="content col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
     <form method="POST">
-        <input type="submit" name="action" value="Add Customer"/>
-        <input type="submit" name="action" value="Add Book"/>
-        <input type="submit" name="action" value="Add Movie"/>
+        <input class="btn menu-button" type="submit" name="action" value="Add Customer"/>
+        <input class="btn menu-button" type="submit" name="action" value="Add Book"/>
+        <input class="btn menu-button" type="submit" name="action" value="Add Movie"/>
+        <br>
+        <c:set var="count" value="0"/>
         <c:forEach items="${commandList}" var="command">
-            <input type="submit" name="action" value="${command.text}"/>
+            <input class="btn menu-button" type="submit" name="action" value="${command.text}"/>
+            <c:set var="count" value="${count + 1}"/>
+            <c:if test="${count == 3}"><br/><c:set var="count" value="0"/>
+            </c:if>
         </c:forEach>
     </form>
+    <h1 class="message">${customerMessage} and ${bookMessage}</h1>
 </div>
-<h1 style="color:#7323d3">${customerMessage}</h1>
-<h1 style="color:#7323d3">${bookMessage}</h1>
-<h1 style="color:#7323d3">${loginMessage}</h1>
-
-</body>
-</html>
-
-
 </body>
 </html>

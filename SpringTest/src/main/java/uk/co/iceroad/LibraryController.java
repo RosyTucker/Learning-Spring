@@ -33,7 +33,6 @@ public class LibraryController {
         return "redirect:index";
     }
 
-
     /**
      * INDEX
      */
@@ -42,8 +41,8 @@ public class LibraryController {
     public String initIndex(ModelMap model, HttpServletRequest request) {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
         model.addAttribute("commandList", menu.getValidCommands());
-        model.addAttribute("customerMessage", "We have " + menu.getLibrary().getCustomers().size() + " Users");
-        model.addAttribute("bookMessage", "We have " + menu.getLibrary().getInventory().size() + " Items");
+        model.addAttribute("customerMessage", "We have " + menu.getLibrary().getCustomers().size() + " users");
+        model.addAttribute("bookMessage", menu.getLibrary().getInventory().size() + " items");
         model.addAttribute("loginMessage", "You are " + (menu.isUserLoggedIn() ? menu.getLoggedInCustomer().getName() : "not logged in."));
         return "index";
     }
@@ -129,11 +128,11 @@ public class LibraryController {
         return "listBook";
     }
 
-    @RequestMapping(value = "listBook",method = RequestMethod.POST)
-    public String postListBook() {
-        return "redirect:index";
-    }
-
+//    @RequestMapping(value = "listBook",method = RequestMethod.POST)
+//    public String postListBook() {
+//        return "redirect:index";
+//    }
+//
 
     /**
      * LIST MOVIES
@@ -268,17 +267,11 @@ public class LibraryController {
     /**
      *Quit
      */
-
     @RequestMapping(value = "quit", method = RequestMethod.GET)
     public String initQuit(ModelMap model, HttpServletRequest request) {
         model.addAttribute("quitMessage", "You Are Logged Out");
-        Menu oldMenu = (Menu) request.getSession().getAttribute("menu");
-        request.getSession().setAttribute("menu", new Menu(oldMenu.getLibrary()));
-        return "quit";
-    }
-
-    @RequestMapping(value = "quit",method = RequestMethod.POST)
-    public String postQuit() {
+        Menu menu = (Menu) request.getSession().getAttribute("menu");
+        menu.setLoggedInCustomer(null);
         return "redirect:index";
     }
 }
