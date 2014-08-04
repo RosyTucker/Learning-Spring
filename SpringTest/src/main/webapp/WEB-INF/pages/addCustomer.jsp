@@ -43,7 +43,7 @@
             <label for="phoneInput">Phone: </label>
             <form:input path="phoneNumber" id="phoneInput" />
             <br>
-            <input class="submit-button btn" type="submit" value="Submit" />
+            <input id="submit" class="submit-button btn" type="submit" value="Submit" />
         </form:form>
     </div>
 </div>

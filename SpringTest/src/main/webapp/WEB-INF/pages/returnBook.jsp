@@ -34,9 +34,11 @@
         <label for="yearInput">Year: </label>
         <form:input path="year" id="yearInput" />
         <br>
-        <input class="submit-button btn" type="submit" value="Submit" />
+        <input id="submit" class="submit-button btn" type="submit" value="Submit" />
     </form:form>
 </div>
 </div>
+<script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+<script src="<c:url value="/resources/js/bibliotecaBook.js" />"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 body{
     background-image:url('../images/congruent_pentagon.png');
     background-repeat: repeat;
+    padding: 30px
 }
 
 .content{
@@ -34,7 +35,7 @@ body{
 h1{
     margin: 0.2em;
     color:#FFFFFF;
-    font-size: 2.3em;
+    font-size: 2em;
     font-weight: 200;
 }
 
@@ -71,7 +72,7 @@ input{
 
 .content h1{
     color: #d31c6b;
-    font-size: 2.3em;
+    font-size: 2em;
     font-weight: 200;
     margin-bottom: 30px;
 }

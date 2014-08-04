@@ -34,12 +34,14 @@
             <label for="yearInput">Year: </label>
             <form:input path="year" id="yearInput" />
             <br>
-            <label for="ratingInput">Rating: </label>
-            <form:input type ="number" path="rating" id="ratingInput" />
+            <label for="ratingInput">Rating (0-10): </label>
+            <form:input path="rating" id="ratingInput" />
             <br>
-            <input class="submit-button btn" type="submit" value="Submit" />
+            <input id="submit" onkeypress="" class="submit-button btn" type="submit" value="Submit" />
         </form:form>
     </div>
 </div>
+<script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+<script src="<c:url value="/resources/js/bibliotecaMovie.js" />"></script>
 </body>
 </html>

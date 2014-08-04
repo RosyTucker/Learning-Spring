@@ -33,7 +33,7 @@
         <label for="passwordInput">Password: </label>
         <form:input type="password" path="password" id="passwordInput" />
         <br>
-        <input class="submit-button btn" type="submit" value="Submit" />
+        <input id="submit" class="submit-button btn" type="submit" value="Submit" />
     </form:form>
 </div>
     </div>

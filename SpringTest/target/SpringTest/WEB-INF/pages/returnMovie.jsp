@@ -23,20 +23,22 @@
 
 <div class="content col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
     <h1>Return Movie</h1>
-<div id="returnMovie">
-    <form:form modelAttribute="movieBuilder">
-        <label for="titleInput">Title: </label>
-        <form:input path="title" id="titleInput" />
-        <br>
-        <label for="directorInput">Director: </label>
-        <form:input path="director" id="directorInput" />
-        <br>
-        <label for="yearInput">Year: </label>
-        <form:input path="year" id="yearInput" />
-        <br>
-        <input class="submit-button btn" type="submit" value="Submit" />
-    </form:form>
+    <div id="returnMovie">
+        <form:form modelAttribute="movieBuilder">
+            <label for="titleInput">Title: </label>
+            <form:input path="title" id="titleInput" />
+            <br>
+            <label for="directorInput">Director: </label>
+            <form:input path="director" id="directorInput" />
+            <br>
+            <label for="yearInput">Year: </label>
+            <form:input path="year" id="yearInput" />
+            <br>
+            <input id="submit" class="submit-button btn" type="submit" value="Submit" />
+        </form:form>
+    </div>
 </div>
-</div>
+<script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+<script src="<c:url value="/resources/js/bibliotecaMovie.js" />"></script>
 </body>
 </html>
