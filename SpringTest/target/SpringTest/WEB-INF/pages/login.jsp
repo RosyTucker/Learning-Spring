@@ -27,8 +27,8 @@
     <h1>Login</h1>
     <div id="login">
     <form:form modelAttribute="loginBuilder">
-        <label for="numberInput">Library Number: </label>
-        <form:input path="libraryNumber" id="numberInput" />
+        <label for="libraryInput">Library Number: </label>
+        <form:input path="libraryNumber" id="libraryInput" />
         <br>
         <label for="passwordInput">Password: </label>
         <form:input type="password" path="password" id="passwordInput" />
@@ -37,5 +37,7 @@
     </form:form>
 </div>
     </div>
+<script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+<script src="<c:url value="/resources/js/bibliotecaLogin.js" />"></script>
 </body>
 </html>

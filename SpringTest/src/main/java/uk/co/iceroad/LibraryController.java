@@ -168,10 +168,12 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "login",method = RequestMethod.POST)
-    public String postLogin(@ModelAttribute LoginBuilder loginBuilder, HttpServletRequest request) {
+    public String postLogin(@ModelAttribute LoginBuilder loginBuilder, ModelMap model, HttpServletRequest request) {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
-        Command.LOGIN.getAction().performAction(menu,new String[]{loginBuilder.getLibraryNumber(),loginBuilder.getPassword()});
-        return "redirect:index";
+        if(Command.LOGIN.getAction().performAction(menu,new String[]{loginBuilder.getLibraryNumber(),loginBuilder.getPassword()}))
+            return "redirect:index";
+        model.addAttribute("errorMessage", "Invalid Login");
+        return "login";
     }
 
     /**
@@ -185,11 +187,15 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "checkoutBook",method = RequestMethod.POST)
-    public String postCheckoutBook(@ModelAttribute BookBuilder bookBuilder, HttpServletRequest request) {
+    public String postCheckoutBook(@ModelAttribute BookBuilder bookBuilder,ModelMap model, HttpServletRequest request) {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
-        Command.CHECKOUT_BOOK.getAction().performAction(menu,
-                new String[]{bookBuilder.getTitle(),bookBuilder.getAuthor(), bookBuilder.getYear()});
-        return "redirect:index";
+
+        if(Command.CHECKOUT_BOOK.getAction().performAction(menu,
+                new String[]{bookBuilder.getTitle(),bookBuilder.getAuthor(), bookBuilder.getYear()}))
+            return "redirect:index";
+
+        model.addAttribute("errorMessage", "Book not Available for Checkout");
+        return "checkoutBook";
     }
 
     /**
@@ -203,11 +209,14 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "returnBook",method = RequestMethod.POST)
-    public String postReturnBook(@ModelAttribute BookBuilder bookBuilder, HttpServletRequest request) {
+    public String postReturnBook(@ModelAttribute BookBuilder bookBuilder, ModelMap model, HttpServletRequest request) {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
-        Command.RETURN_BOOK.getAction().performAction(menu,
-                new String[]{bookBuilder.getTitle(),bookBuilder.getAuthor(), bookBuilder.getYear()});
-        return "redirect:index";
+
+        if(Command.RETURN_BOOK.getAction().performAction(menu,
+                new String[]{bookBuilder.getTitle(),bookBuilder.getAuthor(), bookBuilder.getYear()}))
+            return "redirect:index";
+        model.addAttribute("errorMessage", "Book not Available for Return");
+        return "returnBook";
     }
 
     /**
@@ -221,11 +230,13 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "checkoutMovie",method = RequestMethod.POST)
-    public String postCheckoutMovie(@ModelAttribute MovieBuilder movieBuilder, HttpServletRequest request) {
+    public String postCheckoutMovie(@ModelAttribute MovieBuilder movieBuilder,ModelMap model, HttpServletRequest request) {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
-        Command.CHECKOUT_MOVIE.getAction().performAction(menu,
-                new String[]{movieBuilder.getTitle(),movieBuilder.getDirector(), movieBuilder.getYear()});
-        return "redirect:index";
+        if(Command.CHECKOUT_MOVIE.getAction().performAction(menu,
+                new String[]{movieBuilder.getTitle(),movieBuilder.getDirector(), movieBuilder.getYear()}))
+            return "redirect:index";
+        model.addAttribute("errorMessage", "Movie not Available for Checkout");
+        return "checkoutMovie";
     }
 
     /**
@@ -239,11 +250,13 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "returnMovie",method = RequestMethod.POST)
-    public String postReturnBook(@ModelAttribute MovieBuilder movieBuilder, HttpServletRequest request) {
+    public String postReturnBook(@ModelAttribute MovieBuilder movieBuilder, ModelMap model, HttpServletRequest request) {
         Menu menu = (Menu) request.getSession().getAttribute("menu");
-        Command.RETURN_MOVIE.getAction().performAction(menu,
-                new String[]{movieBuilder.getTitle(),movieBuilder.getDirector(), movieBuilder.getYear()});
-        return "redirect:index";
+        if(Command.RETURN_MOVIE.getAction().performAction(menu,
+                new String[]{movieBuilder.getTitle(),movieBuilder.getDirector(), movieBuilder.getYear()}))
+            return "redirect:index";
+        model.addAttribute("errorMessage", "Movie not Available for Return");
+        return "returnMovie";
     }
 
 

@@ -47,5 +47,7 @@
         </form:form>
     </div>
 </div>
+<script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+<script src="<c:url value="/resources/js/bibliotecaAddCustomer.js" />"></script>
 </body>
 </html>

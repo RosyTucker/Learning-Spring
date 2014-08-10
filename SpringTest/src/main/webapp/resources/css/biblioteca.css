@@ -46,6 +46,13 @@ h2{
     font-weight: 100;
 }
 
+.content h2{
+    margin: 0.4em;
+    color: #9f2931;
+    font-size: 1.8em;
+    font-weight: 100;
+}
+
 .message{
     color:#d31c6b;
     font-weight: 100;
@@ -61,6 +68,8 @@ label{
 
 input{
     margin:4px;
+    border-radius: 3px;
+    border:thin solid #256f5b;
 }
 
 .submit-button{
@@ -100,3 +109,12 @@ input{
     padding-top: 4px;
     font-weight: 100;
 }
+
+.input-success{
+    background-color: rgba(56, 167, 48, 0.18);
+}
+
+.input-error{
+    background-color: rgba(159, 41, 49, 0.29);
+}
+

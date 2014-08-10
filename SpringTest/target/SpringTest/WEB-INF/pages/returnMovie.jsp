@@ -37,6 +37,7 @@
             <input id="submit" class="submit-button btn" type="submit" value="Submit" />
         </form:form>
     </div>
+    <h2>${errorMessage}</h2>
 </div>
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/bibliotecaMovie.js" />"></script>

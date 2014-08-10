@@ -23,20 +23,21 @@
 
 <div class="content col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
     <h1>Return Book</h1>
-<div id="returnBook">
-    <form:form modelAttribute="bookBuilder">
-        <label for="titleInput">Title: </label>
-        <form:input path="title" id="titleInput" />
-        <br>
-        <label for="authorInput">Author: </label>
-        <form:input path="author" id="authorInput" />
-        <br>
-        <label for="yearInput">Year: </label>
-        <form:input path="year" id="yearInput" />
-        <br>
-        <input id="submit" class="submit-button btn" type="submit" value="Submit" />
-    </form:form>
-</div>
+    <div id="returnBook">
+        <form:form modelAttribute="bookBuilder">
+            <label for="titleInput">Title: </label>
+            <form:input path="title" id="titleInput" />
+            <br>
+            <label for="authorInput">Author: </label>
+            <form:input path="author" id="authorInput" />
+            <br>
+            <label for="yearInput">Year: </label>
+            <form:input path="year" id="yearInput" />
+            <br>
+            <input id="submit" class="submit-button btn" type="submit" value="Submit" />
+        </form:form>
+    </div>
+    <h2>${errorMessage}</h2>
 </div>
 <script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
 <script src="<c:url value="/resources/js/bibliotecaBook.js" />"></script>
